@@ -1,0 +1,143 @@
+{
+    "tarefas": [
+        {
+            "id": 1,
+            "titulo": "Entregar trabalho de Algoritmos",
+            "descricao": "Implementar o algoritmo de Dijkstra",
+            "disciplina": "Lógica De Programação",
+            "prioridade": "alta",
+            "dataEntrega": "2023-12-15",
+            "completa": false,
+            "categoria": "Trabalho",
+            "semestre": 1
+        },
+        {
+            "id": 2,
+            "titulo": "Estudar para prova de Cálculo",
+            "descricao": "Revisar derivadas e integrais",
+            "disciplina": "Cálculo Diferencial E Integral I",
+            "prioridade": "media",
+            "dataEntrega": "2023-12-10",
+            "completa": false,
+            "categoria": "Estudo",
+            "semestre": 2
+        }
+    ],
+    "disciplinas": [
+        {
+            "id": 1,
+            "nome": "Matemática Básica E Modelagem",
+            "semestre": 1
+        },
+        {
+            "id": 2,
+            "nome": "Álgebra Matricial E Vetorial",
+            "semestre": 1
+        },
+        {
+            "id": 3,
+            "nome": "Metodologia Científica, Tecnológica E Empreendedora",
+            "semestre": 1
+        },
+        {
+            "id": 4,
+            "nome": "Lógica De Programação",
+            "semestre": 1
+        },
+        {
+            "id": 5,
+            "nome": "Práticas De Leitura E Escrita I",
+            "semestre": 1
+        },
+        {
+            "id": 6,
+            "nome": "Ciência, Tecnologia E Sociedade",
+            "semestre": 1
+        },
+        {
+            "id": 7,
+            "nome": "Introdução Às Ciências E Tecnologia",
+            "semestre": 1
+        },
+        {
+            "id": 8,
+            "nome": "Linguagem De Programação",
+            "semestre": 2
+        },
+        {
+            "id": 9,
+            "nome": "Álgebra Linear",
+            "semestre": 2
+        },
+        {
+            "id": 10,
+            "nome": "Ambiente E Desenvolvimento",
+            "semestre": 2
+        },
+        {
+            "id": 11,
+            "nome": "Modelagem Do Mundo Físico I",
+            "semestre": 2
+        },
+        {
+            "id": 12,
+            "nome": "Práticas De Leitura E Escrita II",
+            "semestre": 2
+        },
+        {
+            "id": 13,
+            "nome": "Química Geral",
+            "semestre": 2
+        },
+        {
+            "id": 14,
+            "nome": "Cálculo Diferencial E Integral I",
+            "semestre": 2
+        },
+        {
+            "id": 15,
+            "nome": "Química Geral Experimental",
+            "semestre": 3
+        },
+        {
+            "id": 16,
+            "nome": "Cálculo Diferencial E Integral II",
+            "semestre": 3
+        },
+        {
+            "id": 17,
+            "nome": "Gestão E Economia Da Ciência, Tecnologia E Inovação",
+            "semestre": 3
+        },
+        {
+            "id": 18,
+            "nome": "Fundamentos Da Mecânica",
+            "semestre": 3
+        },
+        {
+            "id": 19,
+            "nome": "Introdução À Mecânica Para Engenharias: Estática",
+            "semestre": 3
+        },
+        {
+            "id": 20,
+            "nome": "Ciência, Tecnologia E Sociedade II",
+            "semestre": 3
+        },
+        {
+            "id": 21,
+            "nome": "Modelagem Do Mundo Físico II",
+            "semestre": 4
+        },
+        {
+            "id": 22,
+            "nome": "Probabilidade E Estatística",
+            "semestre": 5
+        },
+        {
+            "id": 23,
+            "nome": "Práticas De Leitura Em Inglês",
+            "semestre": 6
+        }
+    ]
+}

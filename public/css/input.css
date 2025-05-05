@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos para os dropdowns */
+.filtro-dropdown-btn {
+    transition: all 0.2s ease;
+    min-width: 120px;
+    justify-content: space-between;
+}
+
+.filtro-dropdown-content {
+    transform-origin: top center;
+    animation: fadeInScale 0.15s ease-out;
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Mostrar dropdown ao hover */
+.filtro-dropdown-btn:hover+.filtro-dropdown-content,
+.filtro-dropdown-content:hover {
+    display: block;
+}
+
+/* Estilo para opções ativas */
+.filtro-dropdown-btn.active {
+    @apply ring-2 ring-opacity-50;
+}
+
+.prioridade-option[data-prioridade="alta"] {
+    @apply bg-red-50;
+}
+
+.categoria-option[data-categoria="Trabalho"] {
+    @apply bg-blue-50;
+}
+
+.status-option[data-status="completo"] {
+    @apply bg-green-50;
+}
+
+/* Garante que o sticky funcione corretamente */
+html {
+    scroll-padding-top: 6rem;
+}
+
+/* Efeitos de transição para os dropdowns */
+.filtro-dropdown-content {
+    transition: all 0.2s ease-out;
+    transform-origin: top;
+}
+
+.filtro-dropdown-btn:hover+.filtro-dropdown-content,
+.filtro-dropdown-content:hover {
+    display: block;
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

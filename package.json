@@ -1,0 +1,24 @@
+{
+  "name": "ectodo",
+  "version": "1.0.0",
+  "description": "ECTo Do List Application",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js",
+    "build-css": "tailwindcss build ./public/css/input.css -o ./public/css/styles.css",
+    "watch-css": "npm run build-css -- --watch"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "json-server": "^0.17.0",
+    "nodemon": "^3.1.10"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17"
+  },
+  "author": "Misla Wislaine",
+  "license": "MIT"
+}

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="ECTo Do - Aplicativo de gerenciamento de tarefas acadêmicas. Organize suas disciplinas, trabalhos e prazos de forma eficiente.">
+    <meta name="keywords"
+        content="to-do list, tarefas acadêmicas, organização estudantil, gerenciador de tarefas, lista de afazeres">
+    <meta name="author" content="Misla Wislaine">
+    <meta property="og:title" content="ECTo Do - Seu Organizador Acadêmico">
+    <meta property="og:description" content="Aplicativo para gerenciamento de tarefas e disciplinas universitárias">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="#">
+    <meta property="og:image" content="#">
+    <meta name="theme-color" content="#0ea5e9">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-icon-180x180.png">
+    <link rel="manifest" href="./assets/favicon/manifest.json">
+
+    <title>ECTo Do</title>
+
+    <!-- Pré-conexão para melhor performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Carregamento otimizado do CSS -->
+    <link href="/css/styles.css" rel="stylesheet" preload>
+
+    <!-- Canonical URL para evitar conteúdo duplicado -->
+    <link rel="canonical" href="#">
+
+    <!-- Dublin Core Metadata -->
+    <meta name="DC.title" content="ECTo Do">
+    <meta name="DC.creator" content="Misla Wislaine">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+    <!-- App -->
+    <div id="app" class="container mx-auto px-4 py-8 max-w-5xl">
+        <!-- Header -->
+        <header class="mb-10 text-center">
+            <!-- Título com ícone -->
+            <h1
+                class="text-4xl font-bold text-neutral-900 mb-2 transition-transform hover:scale-105 duration-300 ease-in-out">
+                <i class="fa-solid fa-graduation-cap mr-2 text-primary-500"></i>
+                <span class="bg-gradient-to-r from-primary-600 to-secondary-500 bg-clip-text text-transparent">
+                    ECTo Do
+                </span>
+            </h1>
+            <!-- Subtítulo -->
+            <p class="mt-2 text-lg text-neutral-600">
+                Organize suas tarefas acadêmicas da
+                <span class="font-semibold text-primary-600">Escola de Ciências e Tecnologia (ECT/UFRN)</span>
+            </p>
+        </header>
+
+        <!-- Conteúdo Principal -->
+        <div class="container mx-auto px-4 mb-10">
+            <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Sidebar -->
+                <aside class="lg:w-1/4 ">
+                    <!-- Formulário de Adição de Tarefas -->
+                    <div class="bg-white p-6 rounded-lg shadow-md sticky top-6">
+                        <h2 class="text-xl font-semibold mb-4 text-primary-600">
+                            <i class="fas fa-plus-circle mr-2"></i>Nova Tarefa
+                        </h2>
+                        <form id="tarefa-form" class="space-y-4">
+                            <!-- Título -->
+                            <div>
+                                <label for="titulo" class="block text-sm font-medium text-gray-700 mb-1">Título*</label>
+                                <input type="text" id="titulo" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+                            </div>
+
+                            <!-- Descrição -->
+                            <div>
+                                <label for="descricao"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Descrição</label>
+                                <textarea id="descricao" rows="3"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"></textarea>
+                            </div>
+
+                            <!-- Semestre -->
+                            <div>
+                                <label for="semestre"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Semestre*</label>
+                                <select id="semestre" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+                                    <option value="">Selecione o semestre...</option>
+                                    <option value="1">1º Semestre</option>
+                                    <option value="2">2º Semestre</option>
+                                    <option value="3">3º Semestre</option>
+                                    <option value="4">4º Semestre</option>
+                                    <option value="5">5º Semestre</option>
+                                    <option value="6">6º Semestre</option>
+                                </select>
+                            </div>
+
+                            <!-- Disciplina (é preenchido via JS baseado no semestre) -->
+                            <div>
+                                <label for="disciplina"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Disciplina*</label>
+                                <select id="disciplina" required disabled
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 bg-gray-100">
+                                    <option value="">Selecione o semestre primeiro</option>
+                                </select>
+                            </div>
+
+                            <!-- Categoria -->
+                            <div>
+                                <label for="categoria"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Categoria*</label>
+                                <select id="categoria" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+                                    <option value="Trabalho">Trabalho</option>
+                                    <option value="Estudo">Estudo</option>
+                                    <option value="Prova">Prova</option>
+                                    <option value="Projeto">Projeto</option>
+                                    <option value="Leitura">Leitura</option>
+                                </select>
+                            </div>
+
+                            <!-- Prioridade -->
+                            <div>
+                                <label for="prioridade"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Prioridade*</label>
+                                <select id="prioridade" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+                                    <option value="baixa">Baixa</option>
+                                    <option value="media">Média</option>
+                                    <option value="alta">Alta</option>
+                                    <option value="urgente">Urgente</option>
+                                </select>
+                            </div>
+
+                            <!-- Data de Entrega -->
+                            <div>
+                                <label for="dataEntrega" class="block text-sm font-medium text-gray-700 mb-1">Data de
+                                    Entrega*</label>
+                                <input type="date" id="dataEntrega" required
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+                            </div>
+
+                            <!-- Status (hidden por padrão, pode ser usado para edição) -->
+                            <input type="hidden" id="completa" value="false">
+
+                            <!-- Botão de Submit -->
+                            <button type="submit" id="submit-btn"
+                                class="w-full bg-primary-600 hover:bg-primary-700 text-white py-2 px-4 rounded-md transition duration-200 flex items-center justify-center">
+                                <i class="fas fa-save mr-2"></i>Salvar Tarefa
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Estatísticas -->
+                    <div class="bg-white p-6 rounded-lg shadow-md mt-6">
+                        <h2 class="text-xl font-semibold mb-4 text-primary-600">
+                            <i class="fas fa-chart-pie mr-2"></i>Estatísticas
+                        </h2>
+                        <table id="estatisticas" class="w-full">
+                            <tr class="border-b border-gray-100">
+                                <td class="text-sm text-gray-700 font-medium py-1">Total de Tarefas:</td>
+                                <td class="text-sm font-semibold text-right py-1" id="total-tarefas">0</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="text-sm text-gray-700 font-medium py-1">Tarefas Pendentes:</td>
+                                <td class="text-sm font-semibold text-right py-1" id="tarefas-pendentes">0</td>
+                            </tr>
+                            <tr>
+                                <td class="text-sm text-gray-700 font-medium py-1">Tarefas Concluídas:</td>
+                                <td class="text-sm font-semibold text-right py-1" id="tarefas-concluidas">0</td>
+                            </tr>
+                        </table>
+                    </div>
+                </aside>
+
+                <!-- Conteúdo Principal -->
+                <main class="flex-1">
+                    <!-- Filtros Compactos -->
+                    <div class="filtros-container bg-white p-6 rounded-lg shadow-md mb-6">
+                        <h2 class="text-xl font-semibold mb-4 text-primary-600">
+                            <i class="fas fa-filter mr-2"></i>Filtros
+                        </h2>
+                        <div class="flex flex-wrap gap-4 justify-center">
+                            <!-- Filtro por Semestre (Dropdown) -->
+                            <div class="relative">
+                                <button
+                                    class="filtro-dropdown-btn flex items-center px-3 py-2 rounded-full text-sm bg-primary-50 text-primary-800 hover:bg-primary-100 transition-all">
+                                    <i class="fas fa-calendar-alt mr-2"></i>
+                                    <span>Semestre</span>
+                                    <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                                </button>
+                                <div
+                                    class="filtro-dropdown-content hidden absolute z-10 mt-1 w-48 bg-white rounded-md shadow-lg py-1">
+                                    <a href="#" class="semestre-option block px-4 py-2 text-sm hover:bg-primary-50"
+                                        data-semestre="all">Todos</a>
+                                    <div class="border-t border-gray-100 my-1"></div>
+                                    <a href="#" class="semestre-option block px-4 py-2 text-sm hover:bg-primary-50"
+                                        data-semestre="1">1º Semestre</a>
+                                    <div class="border-t border-gray-100 my-1"></div>
+                                    <a href="#" class="semestre-option block px-4 py-2 text-sm hover:bg-primary-50"
+                                        data-semestre="2">2º Semestre</a>
+                                    <div class="border-t border-gray-100 my-1"></div>
+                                    <a href="#" class="semestre-option block px-4 py-2 text-sm hover:bg-primary-50"
+                                        data-semestre="3">3º Semestre</a>
+                                    <div class="border-t border-gray-100 my-1"></div>
+                                    <a href="#" class="semestre-option block px-4 py-2 text-sm hover:bg-primary-50"
+                                        data-semestre="4">4º Semestre</a>
+                                    <div class="border-t border-gray-100 my-1"></div>
+                                    <a href="#" class="semestre-option block px-4 py-2 text-sm hover:bg-primary-50"
+                                        data-semestre="5">5º Semestre</a>
+                                    <div class="border-t border-gray-100 my-1"></div>
+                                    <a href="#" class="semestre-option block px-4 py-2 text-sm hover:bg-primary-50"
+                                        data-semestre="6">6º Semestre</a>
+                                </div>
+                            </div>
+
+                            <!-- Filtro por Disciplina (Dropdown) -->
+                            <div class="relative">
+                                <button
+                                    class="filtro-dropdown-btn flex items-center px-3 py-2 rounded-full text-sm bg-blue-50 text-blue-800 hover:bg-blue-100 transition-all">
+                                    <i class="fas fa-book mr-2"></i>
+                                    <span>Disciplina</span>
+                                    <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                                </button>
+                                <div
+                                    class="filtro-dropdown-content hidden absolute z-10 mt-1 w-64 bg-white rounded-md shadow-lg py-1 max-h-60 overflow-y-auto">
+                                    <a href="#" class="disciplina-option block px-4 py-2 text-sm hover:bg-blue-50"
+                                        data-disciplina="all">Todas</a>
+                                    <div class="border-t border-gray-100 my-1"></div>
+                                    <h4 class="px-4 py-1 text-xs font-semibold text-gray-500">1º Semestre</h4>
+                                    <a href="#" class="disciplina-option block px-4 py-2 text-sm hover:bg-blue-50"
+                                        data-disciplina="1">Matemática Básica</a>
+                                    <a href="#" class="disciplina-option block px-4 py-2 text-sm hover:bg-blue-50"
+                                        data-disciplina="4">Lógica de Programação</a>
+                                    <div class="border-t border-gray-100 my-1"></div>
+                                    <h4 class="px-4 py-1 text-xs font-semibold text-gray-500">2º Semestre</h4>
+                                    <a href="#" class="disciplina-option block px-4 py-2 text-sm hover:bg-blue-50"
+                                        data-disciplina="8">Linguagem de Programação</a>
+                                    <a href="#" class="disciplina-option block px-4 py-2 text-sm hover:bg-blue-50"
+                                        data-disciplina="14">Cálculo I</a>
+                                </div>
+                            </div>
+
+                            <!-- Filtro por Prioridade (Dropdown) -->
+                            <div class="relative">
+                                <button
+                                    class="filtro-dropdown-btn flex items-center px-3 py-2 rounded-full text-sm bg-red-50 text-red-800 hover:bg-red-100 transition-all">
+                                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                                    <span>Prioridade</span>
+                                    <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                                </button>
+                                <div
+                                    class="filtro-dropdown-content hidden absolute z-10 mt-1 w-48 bg-white rounded-md shadow-lg py-1">
+                                    <a href="#" class="prioridade-option block px-4 py-2 text-sm hover:bg-red-50"
+                                        data-prioridade="all">Todas</a>
+                                    <div class="border-t border-gray-100 my-1"></div>
+                                    <a href="#"
+                                        class="prioridade-option block px-4 py-2 text-sm hover:bg-red-50 text-red-600"
+                                        data-prioridade="alta">
+                                        <i class="fas fa-circle mr-2 text-xs"></i> Alta
+                                    </a>
+                                    <div class="border-t border-gray-100 my-1"></div>
+                                    <a href="#"
+                                        class="prioridade-option block px-4 py-2 text-sm hover:bg-yellow-50 text-yellow-600"
+                                        data-prioridade="media">
+                                        <i class="fas fa-circle mr-2 text-xs"></i> Média
+                                    </a>
+                                    <div class="border-t border-gray-100 my-1"></div>
+                                    <a href="#"
+                                        class="prioridade-option block px-4 py-2 text-sm hover:bg-green-50 text-green-600"
+                                        data-prioridade="baixa">
+                                        <i class="fas fa-circle mr-2 text-xs"></i> Baixa
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Filtro por Categoria (Dropdown) -->
+                            <div class="relative">
+                                <button
+                                    class="filtro-dropdown-btn flex items-center px-3 py-2 rounded-full text-sm bg-purple-50 text-purple-800 hover:bg-purple-100 transition-all">
+                                    <i class="fas fa-tag mr-2"></i>
+                                    <span>Categoria</span>
+                                    <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                                </button>
+                                <div
+                                    class="filtro-dropdown-content hidden absolute z-10 mt-1 w-48 bg-white rounded-md shadow-lg py-1">
+                                    <a href="#" class="categoria-option block px-4 py-2 text-sm hover:bg-purple-50"
+                                        data-categoria="all">Todas</a>
+                                    <div class="border-t border-gray-100 my-1"></div>
+                                    <a href="#"
+                                        class="categoria-option block px-4 py-2 text-sm hover:bg-blue-50 text-blue-600"
+                                        data-categoria="Trabalho">
+                                        <i class="fas fa-file-alt mr-2"></i> Trabalhos
+                                    </a>
+                                    <div class="border-t border-gray-100 my-1"></div>
+                                    <a href="#"
+                                        class="categoria-option block px-4 py-2 text-sm hover:bg-green-50 text-green-600"
+                                        data-categoria="Estudo">
+                                        <i class="fas fa-book-open mr-2"></i> Estudos
+                                    </a>
+                                    <div class="border-t border-gray-100 my-1"></div>
+                                    <a href="#"
+                                        class="categoria-option block px-4 py-2 text-sm hover:bg-orange-50 text-orange-600"
+                                        data-categoria="Prova">
+                                        <i class="fas fa-edit mr-2"></i> Provas
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Filtro por Status (Dropdown) -->
+                            <div class="relative">
+                                <button
+                                    class="filtro-dropdown-btn flex items-center px-3 py-2 rounded-full text-sm bg-green-50 text-green-800 hover:bg-green-100 transition-all">
+                                    <i class="fas fa-check-circle mr-2"></i>
+                                    <span>Status</span>
+                                    <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                                </button>
+                                <div
+                                    class="filtro-dropdown-content hidden absolute z-10 mt-1 w-48 bg-white rounded-md shadow-lg py-1">
+                                    <a href="#" class="status-option block px-4 py-2 text-sm hover:bg-green-50"
+                                        data-status="all">Todos</a>
+                                    <div class="border-t border-gray-100 my-1"></div>
+                                    <a href="#"
+                                        class="status-option block px-4 py-2 text-sm hover:bg-gray-100 text-gray-600"
+                                        data-status="pendente">
+                                        <i class="fas fa-clock mr-2"></i> Pendentes
+                                    </a>
+                                    <div class="border-t border-gray-100 my-1"></div>
+                                    <a href="#"
+                                        class="status-option block px-4 py-2 text-sm hover:bg-green-50 text-green-600"
+                                        data-status="completo">
+                                        <i class="fas fa-check mr-2"></i> Concluídos
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarefas -->
+                    <div class="space-y-4 bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-xl font-semibold mb-4 text-primary-600">
+                            <i class="fas fa-tasks mr-2"></i>Tarefas
+                        </h2>
+                        <!-- Tarefas serão carregadas aqui via JavaScript -->
+                        <div id="tarefas_container" class="">
+                            <p class="text-gray-500 text-center" id="mensagem_sem_tarefa">Nenhuma tarefa encontrada.
+                                Crie sua primeira tarefa!
+                            </p>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="mt-auto">
+            <div class="text-center text-gray-600 pt-8">
+                <hr class="border-gray-300 mb-8"">
+                <div class=" !pt-8">
+                    <p class="text-sm">&copy; 2025 ECTo Do - Todos os direitos reservados</p>
+                    <p class="text-sm">Desenvolvido por <a href="https://github.com/wwwmisla"
+                            class="text-primary-600 hover:underline">Misla Wislaine</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
