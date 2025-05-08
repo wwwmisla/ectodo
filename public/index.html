@@ -17,10 +17,11 @@
     <meta name="theme-color" content="#0ea5e9">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+    <link rel="shortcut icon" href="./assets/favicon/ico.svg" type="image/x-icon">
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-icon-180x180.png">
-    <link rel="manifest" href="./assets/favicon/manifest.json">
+    <link rel="manifest" href="./assets/favicon/manifest.json"> -->
 
     <title>ECTo Do</title>
 
@@ -172,11 +173,11 @@
                             </tr>
                             <tr class="border-b border-gray-100">
                                 <td class="text-sm text-gray-700 font-medium py-1">Tarefas Pendentes:</td>
-                                <td class="text-sm font-semibold text-right py-1" id="tarefas-pendentes">0</td>
+                                <td class="text-sm font-semibold text-right py-1" id="total-pendentes">0</td>
                             </tr>
                             <tr>
                                 <td class="text-sm text-gray-700 font-medium py-1">Tarefas Concluídas:</td>
-                                <td class="text-sm font-semibold text-right py-1" id="tarefas-concluidas">0</td>
+                                <td class="text-sm font-semibold text-right py-1" id="total-concluidas">0</td>
                             </tr>
                         </table>
                     </div>
@@ -189,9 +190,9 @@
                         <h2 class="text-xl font-semibold mb-4 text-primary-600">
                             <i class="fas fa-filter mr-2"></i>Filtros
                         </h2>
-                        <div class="flex flex-wrap gap-4 justify-center">
+                        <div id="filtros" class="flex flex-wrap gap-4 justify-center">
                             <!-- Filtro por Semestre (Dropdown) -->
-                            <div class="relative">
+                            <div class="relative" id="filtro-semestre">
                                 <button
                                     class="filtro-dropdown-btn flex items-center px-3 py-2 rounded-full text-sm bg-primary-50 text-primary-800 hover:bg-primary-100 transition-all">
                                     <i class="fas fa-calendar-alt mr-2"></i>
@@ -224,7 +225,7 @@
                             </div>
 
                             <!-- Filtro por Disciplina (Dropdown) -->
-                            <div class="relative">
+                            <div class="relative" id="filtro-disciplina">
                                 <button
                                     class="filtro-dropdown-btn flex items-center px-3 py-2 rounded-full text-sm bg-blue-50 text-blue-800 hover:bg-blue-100 transition-all">
                                     <i class="fas fa-book mr-2"></i>
@@ -251,7 +252,7 @@
                             </div>
 
                             <!-- Filtro por Prioridade (Dropdown) -->
-                            <div class="relative">
+                            <div class="relative" id="filtro-prioridade">
                                 <button
                                     class="filtro-dropdown-btn flex items-center px-3 py-2 rounded-full text-sm bg-red-50 text-red-800 hover:bg-red-100 transition-all">
                                     <i class="fas fa-exclamation-triangle mr-2"></i>
@@ -284,7 +285,7 @@
                             </div>
 
                             <!-- Filtro por Categoria (Dropdown) -->
-                            <div class="relative">
+                            <div class="relative" id="filtro-categoria">
                                 <button
                                     class="filtro-dropdown-btn flex items-center px-3 py-2 rounded-full text-sm bg-purple-50 text-purple-800 hover:bg-purple-100 transition-all">
                                     <i class="fas fa-tag mr-2"></i>
@@ -317,7 +318,7 @@
                             </div>
 
                             <!-- Filtro por Status (Dropdown) -->
-                            <div class="relative">
+                            <div class="relative" id="filtro-status">
                                 <button
                                     class="filtro-dropdown-btn flex items-center px-3 py-2 rounded-full text-sm bg-green-50 text-green-800 hover:bg-green-100 transition-all">
                                     <i class="fas fa-check-circle mr-2"></i>
@@ -351,8 +352,8 @@
                             <i class="fas fa-tasks mr-2"></i>Tarefas
                         </h2>
                         <!-- Tarefas serão carregadas aqui via JavaScript -->
-                        <div id="tarefas_container" class="">
-                            <p class="text-gray-500 text-center" id="mensagem_sem_tarefa">Nenhuma tarefa encontrada.
+                        <div id="tarefas-container" class="space-y-4">
+                            <p class="text-gray-500 text-center py-10" id="mensagem-sem-tarefa">Nenhuma tarefa encontrada.
                                 Crie sua primeira tarefa!
                             </p>
                         </div>
@@ -364,15 +365,127 @@
         <!-- Rodapé -->
         <footer class="mt-auto">
             <div class="text-center text-gray-600 pt-8">
-                <hr class="border-gray-300 mb-8"">
-                <div class=" !pt-8">
-                    <p class="text-sm">&copy; 2025 ECTo Do - Todos os direitos reservados</p>
-                    <p class="text-sm">Desenvolvido por <a href="https://github.com/wwwmisla"
-                            class="text-primary-600 hover:underline">Misla Wislaine</a></p>
-                </div>
+                <hr class="border-gray-300 mb-8">
+                <p class="text-sm">&copy; 2025 ECTo Do - Todos os direitos reservados</p>
+                <p class="text-sm">Desenvolvido por <a href="https://github.com/wwwmisla"
+                        class="text-primary-600 hover:underline">Misla Wislaine</a></p>
             </div>
-        </footer>
     </div>
+    </footer>
+    </div>
+
+    <!-- Modal de Edição de Tarefa (hidden por padrão) -->
+    <div id="modal-edicao" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-6 rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-semibold text-primary-600">
+                    <i class="fas fa-edit mr-2"></i>Editar Tarefa
+                </h3>
+                <button id="fechar-modal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+            </div>
+            <form id="editar-form" class="space-y-4">
+                <input type="hidden" id="editar-id">
+
+                <!-- Título -->
+                <div>
+                    <label for="editar-titulo" class="block text-sm font-medium text-gray-700 mb-1">Título*</label>
+                    <input type="text" id="editar-titulo" required
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+                </div>
+
+                <!-- Descrição -->
+                <div>
+                    <label for="editar-descricao" class="block text-sm font-medium text-gray-700 mb-1">Descrição</label>
+                    <textarea id="editar-descricao" rows="2"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"></textarea>
+                </div>
+
+                <!-- Semestre -->
+                <div>
+                    <label for="editar-semestre" class="block text-sm font-medium text-gray-700 mb-1">Semestre*</label>
+                    <select id="editar-semestre" required
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        <option value="">Selecione o semestre...</option>
+                        <option value="1">1º Semestre</option>
+                        <option value="2">2º Semestre</option>
+                        <option value="3">3º Semestre</option>
+                        <option value="4">4º Semestre</option>
+                        <option value="5">5º Semestre</option>
+                        <option value="6">6º Semestre</option>
+                    </select>
+                </div>
+
+                <!-- Disciplina -->
+                <div>
+                    <label for="editar-disciplina"
+                        class="block text-sm font-medium text-gray-700 mb-1">Disciplina*</label>
+                    <select id="editar-disciplina" required
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        <option value="">Selecione o semestre primeiro</option>
+                    </select>
+                </div>
+
+                <!-- Categoria -->
+                <div>
+                    <label for="editar-categoria"
+                        class="block text-sm font-medium text-gray-700 mb-1">Categoria*</label>
+                    <select id="editar-categoria" required
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        <option value="Trabalho">Trabalho</option>
+                        <option value="Estudo">Estudo</option>
+                        <option value="Prova">Prova</option>
+                        <option value="Projeto">Projeto</option>
+                        <option value="Leitura">Leitura</option>
+                    </select>
+                </div>
+
+                <!-- Prioridade -->
+                <div>
+                    <label for="editar-prioridade"
+                        class="block text-sm font-medium text-gray-700 mb-1">Prioridade*</label>
+                    <select id="editar-prioridade" required
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        <option value="baixa">Baixa</option>
+                        <option value="media">Média</option>
+                        <option value="alta">Alta</option>
+                        <option value="urgente">Urgente</option>
+                    </select>
+                </div>
+
+                <!-- Data de Entrega -->
+                <div>
+                    <label for="editar-data" class="block text-sm font-medium text-gray-700 mb-1">Data de
+                        Entrega*</label>
+                    <input type="date" id="editar-data" required
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
+                </div>
+
+                <!-- Completa -->
+                <div class="flex items-center">
+                    <input type="checkbox" id="editar-completa"
+                        class="h-4 w-4 text-primary-500 focus:ring-primary-500 border-gray-300 rounded">
+                    <label for="editar-completa" class="ml-2 block text-sm text-gray-700">Tarefa Completa</label>
+                </div>
+
+                <!-- Botões -->
+                <div class="flex justify-end space-x-3 pt-4 gap-4">
+                    <button type="button" id="cancelar-edicao"
+                        class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100">
+                        Cancelar
+                    </button>
+                    <button type="submit"
+                        class="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition duration-200">
+                        <i class="fas fa-save mr-2"></i>Salvar Alterações
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
