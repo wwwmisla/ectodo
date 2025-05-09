@@ -10,7 +10,7 @@
     "watch-css": "npm run build-css -- --watch"
   },
   "dependencies": {
-    "express": "^5.1.0",
+    "express": "^4.18.2",
     "http-proxy-middleware": "^3.0.5",
     "json-server": "^0.17.4",
     "nodemon": "^2.0.22"
@@ -21,5 +21,14 @@
     "tailwindcss": "^3.4.17"
   },
   "author": "Misla Wislaine",
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": [
+    "todo",
+    "list",
+    "task",
+    "academic",
+    "task-manager",
+    "ect",
+    "ufrn"
+  ]
 }

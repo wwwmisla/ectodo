@@ -1,26 +1,48 @@
 {
   "tarefas": [
     {
+      "titulo": "Entregar trabalho de Algoritmos",
+      "descricao": "Implementar o algoritmo de Dijkstra",
+      "disciplina": "Lógica de Programação",
+      "prioridade": "alta",
+      "dataEntrega": "2023-12-15",
       "completa": true,
-      "id": 2,
-      "titulo": "Lista de condicionais",
-      "descricao": "gdgddf",
-      "semestre": "2",
-      "disciplina": "Práticas De Leitura E Escrita II",
       "categoria": "Trabalho",
-      "prioridade": "baixa",
-      "dataEntrega": "2025-05-08"
+      "semestre": 1,
+      "id": 1
     },
     {
-      "titulo": "Lista de condicionais II",
-      "descricao": "gdgddf",
+      "titulo": "Estudar para prova de Cálculo",
+      "descricao": "Revisar derivadas e integrais",
       "semestre": "2",
-      "disciplina": "Práticas De Leitura E Escrita II",
-      "categoria": "Trabalho",
+      "disciplina": "Cálculo Diferencial E Integral I",
+      "categoria": "Estudo",
+      "prioridade": "media",
+      "dataEntrega": "2023-12-10",
+      "completa": true,
+      "id": 2
+    },
+    {
+      "titulo": "Lista de exercícios de Física",
+      "descricao": "Resolver os exercícios do capítulo 3",
+      "semestre": "3",
+      "disciplina": "Fundamentos Da Mecânica",
+      "categoria": "Estudo",
       "prioridade": "baixa",
-      "dataEntrega": "2025-05-08",
+      "dataEntrega": "2025-04-08",
       "completa": false,
       "id": 3
+    },
+    {
+      "titulo": "Estudar para prova de Linguagem de Programação",
+      "descricao": "Revisar conceitos de variáveis e loops",
+      "disciplina": "Linguagem de Programação",
+      "prioridade": "urgente",
+      "dataEntrega": "2024-12-08",
+      "completa": false,
+      "categoria": "Estudo",
+      "semestre": 2,
+      "id": 4
     }
   ],
   "disciplinas": [

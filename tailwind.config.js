@@ -8,6 +8,12 @@ module.exports = {
       },
       colors: {
         // Paleta principal
+        universidade: {
+          primary: "#2C3E50",
+          secondary: "#E74C3C",
+          accent: "#3498DB"
+        },
+        // Paleta de cores personalizada
         primary: {
           50: "#f0f9ff",
           100: "#e0f2fe",
