@@ -1,7 +1,13 @@
 // Script responsável por gerenciar as tarefas, disciplinas e estatísticas da aplicação realizando o CRUD (Create, Read, Update, Delete) de tarefas e disciplinas. Ele também lida com a exibição de mensagens e a interação do usuário com o DOM.
 document.addEventListener("DOMContentLoaded", () => {
     // URL base da API
-    const API_URL = "http://localhost:3000";
+    let API_URL;
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+      API_URL = "http://localhost:3000"; // json-server local
+    } else {
+      API_URL = window.location.origin; // produção no Render
+    }
+
     const API_URL_TAREFAS = `${API_URL}/tarefas`;
     const API_URL_DISCIPLINAS = `${API_URL}/disciplinas`;
 
